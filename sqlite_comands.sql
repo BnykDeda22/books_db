@@ -24,3 +24,14 @@ INSERT INTO books(title, release_, author ,genre_id)
            ('Тарас Бульба', NULL, 'Н.В. Гоголь', 2),
            ('Гарри Поттер и философский камень', 1997, 'Дж. К. Роулинг', 3),
            ('Капитанская дочка', Null, 'Пушкин А.С.', NULL);
+
+INSERT INTO genres(genre)
+    VALUES ('лирика');
+
+DELETE FROM genres
+    WHERE genre='лирика'; --Удаление произошло, так как ни одна запись из таблицы books не ссылается на новый жанр
+
+DELETE FROM genres
+    WHERE  genre='Роман'; --Призойдет ошибка так как есть ссылки, нужно каскадное удаление, или редактирование табиц с добавлением условия каскадного удаления
+-- FOREIGN KEY (genre_id) REFERENCES genres(id) ON DELETE CASCADE
+
